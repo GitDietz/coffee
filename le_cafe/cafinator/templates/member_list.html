@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<!-- Background image
+<div class="bg-image" style="
+      background-image: 'coffee.jpg';
+      height: 100vh;">
+</div>-->
+<!-- Background image -->
+<div class="meeting-body">
+
+<h1>{{ title }}</h1>
+<h5>
+  <a href="{% url 'coffee:member_new' %}">Add a new team member</a>
+</h5>
+
+{% if objects %}
+  <table class="table table-sm">
+  <thead><tr><th scope="col">Name</th><th scope="col">Active</th> </tr></thead>
+    <tbody>
+      {% for obj in objects %}
+          <tr>
+            <td scope="row">
+                  <a href="{% url 'coffee:member_edit' pk=obj.pk %}">{{ obj.full_name }}</a></td>
+            <td>{{ obj.active }}</td>
+         </tr>
+      {% endfor %}
+  </tbody>
+  </table>
+{% else %}
+    <p>No list yet!</p>
+{% endif %}
+</div>
+<small>Photo by <a href="https://unsplash.com/@nate_dumlao?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Nathan Dumlao</a></small>
+
+{% endblock content %}

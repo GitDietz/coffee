@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<h1>{{ title }}</h1>
+{% if objects %}
+   <table class="table table-sm">
+    <thead><tr><th scope="col">Combination</th><th scope="col">Meetings arranged</th> </tr></thead><tbody>
+        {% for obj in objects %}
+            <tr>
+              <td scope="row">{{ obj.named }}</td>
+              <td>{{ obj.meetings }}</td>
+           </tr>
+            </div>
+        {% endfor %}
+    </tbody></table>
+
+{% else %}
+    <p>No list yet!</p>
+{% endif %}
+
+{% endblock content %}

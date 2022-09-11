@@ -85,7 +85,7 @@ THIRD_PARTY_APPS = [
 
 LOCAL_APPS = [
     "le_cafe.users",
-    # Your stuff: custom apps go here
+    "cafinator.apps.CafinatorConfig",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -278,7 +278,3 @@ ACCOUNT_FORMS = {"signup": "le_cafe.users.forms.UserSignupForm"}
 SOCIALACCOUNT_ADAPTER = "le_cafe.users.adapters.SocialAccountAdapter"
 # https://django-allauth.readthedocs.io/en/latest/forms.html
 SOCIALACCOUNT_FORMS = {"signup": "le_cafe.users.forms.UserSocialSignupForm"}
-
-
-# Your stuff...
-# ------------------------------------------------------------------------------

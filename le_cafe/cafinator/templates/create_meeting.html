@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<h1>{{ title }}</h1>
+    <p>
+    <form method='POST' action="" >
+        {% csrf_token %}
+      <div class="form_group">
+        <label>Meeting</label>
+        <div class>
+          <textarea name="meeting" cols="20" rows="8" class="textarea form-control">{{meetings}}</textarea>
+        </div>
+      </div>
+    <div class="form_group">
+        <label>Created on</label>
+        <div class>
+
+            {{created}}
+
+        </div>
+      </div>
+        <input type='submit' class="btn btn-secondary" name = 'make_meeting' value = 'Schedule Meeting'>
+        <input type='submit' class="btn btn-secondary" name = 'email' value = 'Email Meeting List'>
+
+     {% if form.errors %}
+     {% for field in form %}
+        {% for error in field.errors %}
+            <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endfor %}
+    {% for error in form.non_field_errors %}
+        <div class="alert alert-danger">
+            <strong>{{ error|escape }}</strong>
+        </div>
+    {% endfor %}
+    {% endif %}
+
+    </form>
+    </p>
+
+
+{% endblock content %}
