@@ -11,7 +11,7 @@
 
 <h1>{{ title }}</h1>
 <h5>
-  <a href="{% url 'coffee:member_new' %}">Add a new team member</a>
+  <a href="{% url 'cafe:member_new' %}">Add a new team member</a>
 </h5>
 
 {% if objects %}
@@ -21,7 +21,7 @@
       {% for obj in objects %}
           <tr>
             <td scope="row">
-                  <a href="{% url 'coffee:member_edit' pk=obj.pk %}">{{ obj.full_name }}</a></td>
+                  <a href="{% url 'cafe:member_edit' pk=obj.pk %}">{{ obj.full_name }}</a></td>
             <td>{{ obj.active }}</td>
          </tr>
       {% endfor %}

@@ -423,6 +423,7 @@ def create_meetings():
     planned_mtgs = []  # to be a list of strings that represent pks for the members
     selected_mtg_keys = []
     selected_member_keys = []
+    local_lst_meetings = ""
     # local_lis_mtgs looks like this  ['12|15', '2|16', '11|14', '5|9', '7|13', '3|8', '4|6']
     try:
         meetings_required = Member.meetings_to_set()
@@ -431,12 +432,13 @@ def create_meetings():
         local_lis_individuals = []
         while meetings_required > meetings_set:
             meetings_now_reqd = meetings_required - meetings_set
-            least_allocated = get_db_value('SELECT min(meetings) FROM coffee_meetup WHERE active = 1', 'int') + i
+            least_allocated = Meetup.least_scheduled_combinations() + i
+            # least_allocated = get_db_value('SELECT min(meetings) FROM cafinator_meetup WHERE active = 1', 'int') + i
             qs_first_pool = Meetup.objects.done_times(least_allocated)
             local_int_success, local_list_pool_pairs, pool_mtg_keys = get_mtg_combinations(qs_first_pool)
             local_int_success, local_lis_mtgs, local_lis_individuals = get_random_pairs(local_list_pool_pairs,
                                                                                         meetings_now_reqd,
-                                                                                       planned_mtgs)
+                                                                                        planned_mtgs)
             planned_mtgs.extend(local_lis_mtgs)
             meetings_found = len(planned_mtgs)
             meetings_set += meetings_found

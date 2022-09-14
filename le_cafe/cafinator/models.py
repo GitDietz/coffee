@@ -90,6 +90,11 @@ class Meetup(models.Model):
         nhm = Meetup.objects.active().order_by(models.F('meetings')).first()
         return nhm.meetings
 
+    @classmethod
+    def least_scheduled_combinations(cls):
+        qs = Meetup.objects.active().values_list('meetings', flat=True).order_by('meetings')
+        return list(qs)[0]
+
 
 class MeetRecord(models.Model):
     recorded = models.DateField(auto_now_add=True)

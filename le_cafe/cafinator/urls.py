@@ -1,8 +1,7 @@
 from django.urls import path, re_path
 
-from .views import (combination_list,
-                                     member_edit, member_list, member_new,
-                                     meet_test, make_meetings, meetup_list)
+from .views import (combination_list, member_edit, member_list, member_new,
+                    meet_test, make_meetings, meetup_list)
 
 app_name = 'cafinator'
 

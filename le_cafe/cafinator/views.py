@@ -49,7 +49,7 @@ def member_new(request):
                     messages.success(request, "Additional meetings added for the new member")
                 else:
                     messages.error(request, "Meetup creation failed")
-            return redirect('coffee:member_list')
+            return redirect('cafe:member_list')
         else:
             logger.error(f'Form: {form.errors}')
             messages.error(request, "Member creation failed")
@@ -78,7 +78,7 @@ def member_edit(request, pk):
 
     except ObjectDoesNotExist:
         messages.error(request, "No such Member found")
-        return redirect('coffee:member_list')
+        return redirect('cafe:member_list')
 
     form = MemberForm(request.POST or None, instance=member)
     if request.method == 'POST':
@@ -93,7 +93,7 @@ def member_edit(request, pk):
                 else:
                     messages.error(request, "Meeting alteration failed")
 
-            return redirect('coffee:member_list')
+            return redirect('cafe:member_list')
         else:
             logger.error(f'Form: {form.errors}')
 
@@ -201,7 +201,7 @@ def make_meetings(request):
                 messages.success(request, "New meeting set created")
             else:
                 messages.success(request, "New meeting set failed")
-            redirect('coffee:meetup_list')
+            redirect('cafe:meetup_list')
         if 'email' in request.POST:
             local_int_success, local_dict_config = loadconfig()
             if local_int_success == 0:
@@ -219,7 +219,7 @@ def make_meetings(request):
             else:
                 logger.error(f'Email config read failed')
                 messages.error(request, 'Email config error')
-            redirect('coffee:meetup_list')
+            redirect('cafe:meetup_list')
 
     # with transaction.atomic():
     #    last_mtg, last_set = get_latest_meeting_record()
@@ -249,4 +249,4 @@ def make_meetings_admin(request):
     """
     logger.info('Start')
     # returnval = make_permutations()
-    return redirect('coffee:meetup_list')
+    return redirect('cafe:meetup_list')
