@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+{% block head_title %}
+{% endblock head_title %}
+{% endblock title %}
+
+{% block content %}
+<h2> {{ title }}</h2>
+<div class="row">
+  <div class="col-lg-10">
+     <form method='POST' action="" >
+        {% csrf_token %}
+        <div class="form-row">
+            <div class="w-100 p-3">
+              Project {{ form.project }} <br>
+              Description {{ form.desc }} <br>
+              Update Notes {{ form.note }} <br>
+              Assigned {{ form.assigned }}  <br>
+              Due on {{ form.due  }} Updated {{ form.updated }} <br>
+              Completed {{ form.complete }} <button type="submit" name="make_complete">Mark Complete</button>
+            </div></div>
+         <br/>
+
+        <button type="submit">Submit</button>
+
+      </form>
+  </div>
+</div>
+{% endblock %}

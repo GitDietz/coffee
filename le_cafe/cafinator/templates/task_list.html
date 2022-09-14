@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+{% block head_title %}
+{% endblock head_title %}
+{% endblock title %}
+
+{% block content %}
+<h2> {{ title }}</h2>
+<div class="col-lg-10" data-aos="fade-right">
+  <a href="{% url 'core:task_detail' pk=0 %}">Add Task</a>
+</div>
+Tasks to do
+{% for task in tasks_todo %}
+
+  <div class="row">
+    <div class="col-md-10">
+
+      <p><a href="{% url 'core:task_detail' pk=task.pk %}">{{task.id}}. </a> {{task.project}} - {{ task.desc }}</p>
+
+    </div>
+  </div>
+{% empty %}
+  <p>Nothing to do!</p>
+{% endfor %}
+Tasks complete
+{% for task in tasks_done %}
+  <div class="row">
+    <div class="col-md-10">
+
+      <p><a href="{% url 'core:task_detail' pk=task.pk %}">{{task.id}}. </a> {{task.project}} - {{ task.desc }}</p>
+
+    </div>
+  </div>
+{% empty %}
+  <p>Nothing done yet</p>
+{% endfor %}
+{% endblock %}

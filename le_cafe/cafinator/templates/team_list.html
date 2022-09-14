@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+{% block head_title %}
+{% endblock head_title %}
+{% endblock title %}
+
+{% block content %}
+<h2> {{ title }}</h2>
+<div class="col-lg-10" data-aos="fade-right">
+  <a href="{% url 'triage:new_member' %}">{{ new_text }}</a>
+</div>
+<div class="row">
+  <div class="col-md-10">
+    {% for obj in object_list %}
+      <p><a href="{% url 'triage:member' pk=obj.pk %}">{{ obj.pk }}</a> {{obj.full_name}} - {{ obj.team }} </p>
+    {% empty %}
+      <p>No list yet</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

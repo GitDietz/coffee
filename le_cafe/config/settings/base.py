@@ -8,6 +8,7 @@ import environ
 ROOT_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
 # le_cafe/
 APPS_DIR = ROOT_DIR / "le_cafe"
+
 env = environ.Env()
 
 READ_DOT_ENV_FILE = env.bool("DJANGO_READ_DOT_ENV_FILE", default=False)
@@ -48,7 +49,7 @@ DATABASES = {
     ),
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'coffee.db',
+        'NAME': str(ROOT_DIR / 'coffee.db'),
     }
 }
 DATABASES["default"]["ATOMIC_REQUESTS"] = True
@@ -85,7 +86,7 @@ THIRD_PARTY_APPS = [
 
 LOCAL_APPS = [
     "le_cafe.users",
-    # Your stuff: custom apps go here
+    "cafinator.apps.CafinatorConfig",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -278,7 +279,3 @@ ACCOUNT_FORMS = {"signup": "le_cafe.users.forms.UserSignupForm"}
 SOCIALACCOUNT_ADAPTER = "le_cafe.users.adapters.SocialAccountAdapter"
 # https://django-allauth.readthedocs.io/en/latest/forms.html
 SOCIALACCOUNT_FORMS = {"signup": "le_cafe.users.forms.UserSocialSignupForm"}
-
-
-# Your stuff...
-# ------------------------------------------------------------------------------
