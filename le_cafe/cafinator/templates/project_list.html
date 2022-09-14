@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+{% block head_title %}
+{% endblock head_title %}
+{% endblock title %}
+
+{% block content %}
+<h2> {{ title }}</h2>
+<div class="col-lg-10" data-aos="fade-right">
+  <a href="{% url 'core:project_detail' pk=0 %}">Add Project</a>
+</div>
+<div class="row">
+  <div class="col-md-10">
+    {% for project in projects %}
+    <p><a href="{% url 'core:project_detail' pk=project.pk %}">{{project.id}}. </a>{{ project.name }}</p>
+    {% empty %}
+      <p>No list yet</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

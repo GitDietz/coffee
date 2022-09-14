@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<h1>{{ title }}</h1>
+{% if objects %}
+    {% for obj in objects %}
+        <div class="row p-1 mb-2 bg-light text-dark">
+            <div class="col-md-8 col-xs-8">
+                {{ obj.detail }}
+                <!-- {{ obj.get_absolute_url }} -->
+            </div>
+            <div class="col-md-4 col-xs-4">
+                {{ obj.recorded }}
+            </div>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>No list yet!</p>
+{% endif %}
+
+{% endblock content %}
